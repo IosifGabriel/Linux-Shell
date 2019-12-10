@@ -1,10 +1,11 @@
 #include <stdio.h>
-#include<string.h> 
+#include <string.h> 
 #include <stdbool.h>
-#include<stdlib.h> 
-#include<unistd.h> 
-#include<sys/types.h> 
-#include<sys/wait.h> 
+#include <stdlib.h> 
+#include <unistd.h> 
+#include <sys/types.h> 
+#include <sys/wait.h> 
+#include "process.h"
 
 void welcome()
 {
@@ -32,7 +33,9 @@ int main()
     {
         printf("> ");
         char *line = readLine();
-        printf("Entered: %s", line);
+        char *args[2] = {"ls", NULL};   
+
+        launchProcess(args);
     }
 
     return 0;

@@ -4,7 +4,8 @@
 #include <stdlib.h> 
 #include <unistd.h> 
 #include <sys/types.h> 
-#include <sys/wait.h> 
+#include <sys/wait.h>
+#include "parser.h"
 #include "process.h"
 
 void welcome()
@@ -33,7 +34,7 @@ int main()
     {
         printf("> ");
         char *line = readLine();
-        char *args[2] = {"ls", NULL};   
+        char **args = parse(line).commandWords;
 
         launchProcess(args);
     }

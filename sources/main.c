@@ -7,6 +7,7 @@
 #include <sys/wait.h>
 #include "parser.h"
 #include "process.h"
+#include "command.h"
 
 void welcome()
 {
@@ -30,13 +31,32 @@ int main()
 {
     welcome(); 
   
+    char *path;
+
     while (true)
     {
-        printf("> ");
+        path = getCurrentDirectory();
+
+        printf("%s> ", path);
+        
         char *line = readLine();
         char **args = parse(line).commandWords;
 
-        launchProcess(args);
+        if(strcmp(args[0], "exit") == 0) {
+            exitProgram();
+        }
+        else if(strcmp(args[0], "cd") == 0) {
+            changeDirectory(args[1]);
+        }
+        else if(strcmp(args[0],"pwd") == 0) {
+            printf("%s \n", path);
+        }
+        else if(strcmp(args[0], "mkdir") == 0) {
+            createDirectory(args[1]);
+        }
+        else {
+            launchProcess(args);
+        }
     }
 
     return 0;

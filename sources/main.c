@@ -37,7 +37,10 @@ int main()
         char *line = readLine();
         char **args = parse(line).commandWords;
 
-        if(strcmp(args[0], "cd") == 0) {
+        if(strcmp(args[0], "exit") == 0) {
+            exitProgram();
+        }
+        else if(strcmp(args[0], "cd") == 0) {
             changeDirectory(args[1]);
         }
         else if(strcmp(args[0],"pwd") == 0) {

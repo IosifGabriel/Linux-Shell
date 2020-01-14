@@ -37,7 +37,8 @@ void createDirectory(char *name)
         perror(NULL);
 }
 
-void exitProgram() {
+void exitProgram()
+{
 	// TODO
 }
 

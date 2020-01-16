@@ -37,7 +37,7 @@ void launchProcessPiped(char** args, char** argspiped)
         dup2(pipefd[1], STDOUT_FILENO); 
         close(pipefd[1]); 
   
-        if (execvp(args[0], args) < 0) { 
+        if (execvp(args[0], args) < 0) {
             printf("\nCould not execute command 1.."); 
             exit(0); 
         } 

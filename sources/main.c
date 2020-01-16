@@ -64,7 +64,7 @@ int main()
         struct input parserResult = parse(line);
         
         int nargs = parserResult.noOfCommands;
-        int npargs = parserResult.noOfPippedCommands; 
+        int npargs = parserResult.noOfPipedCommands; 
         char **args = parserResult.commandWords;
         char **argsPiped = parserResult.pipeCommandWords;
 

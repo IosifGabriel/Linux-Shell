@@ -60,9 +60,11 @@ int main()
         printf("%s> ", path);
         
         char *line = readLine();
-        char **args = parse(line).commandWords;
+        struct input parserResult = parse(line);
+        int nargs = parserResult.noOfCommands;
+        char **args = parserResult.commandWords;
 
-	addToHistory(line);
+	    addToHistory(line);
 
         if(strcmp(args[0], "exit") == 0) {
             exitProgram();
@@ -76,22 +78,21 @@ int main()
         else if(strcmp(args[0], "mkdir") == 0) {
             createDirectory(args[1]);
         }
-	else if(strcmp(args[0], "hist") == 0) {
-	    printHistory();
-	}	
-	else if(strcmp(args[0], "ls")==0){
-		
-		if(args[1]=="-l");
-			listcwdlong();
-		else			
-			listcwd();	
-	}
-	else if(strcmp(args[0], "cls")==0){
-		clearscreen();	
-	}
-	else if(strcmp(args[0], "rmdir") == 0) {
-		removeDirectory(args[1]);	
-	}
+        else if(strcmp(args[0], "hist") == 0) {
+            printHistory();
+        }	
+        else if(strcmp(args[0], "ls") == 0) {
+		    if(nargs > 2 && strcmp(args[1], "-l") == 0)
+                listcwdlong();
+		    else			
+			    listcwd();
+	    }
+	    else if(strcmp(args[0], "cls") == 0) {
+		    clearScreen();
+	    }
+	    else if(strcmp(args[0], "rmdir") == 0) {
+		    removeDirectory(args[1]);	
+	    }
         else {
             launchProcess(args);
         }

@@ -68,7 +68,7 @@ int main()
         char **args = parserResult.commandWords;
         char **argsPiped = parserResult.pipeCommandWords;
 
-	    addToHistory(line);
+	addToHistory(line);
 
         if(strcmp(args[0], "exit") == 0) {
             exitProgram();

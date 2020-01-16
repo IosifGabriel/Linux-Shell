@@ -60,11 +60,15 @@ int main()
         printf("%s> ", path);
         
         char *line = readLine();
-        struct input parserResult = parse(line);
-        int nargs = parserResult.noOfCommands;
-        char **args = parserResult.commandWords;
 
-	    addToHistory(line);
+        struct input parserResult = parse(line);
+        
+        int nargs = parserResult.noOfCommands;
+        int npargs = parserResult.noOfPipedCommands; 
+        char **args = parserResult.commandWords;
+        char **argsPiped = parserResult.pipeCommandWords;
+
+	addToHistory(line);
 
         if(strcmp(args[0], "exit") == 0) {
             exitProgram();
@@ -94,7 +98,10 @@ int main()
 		    removeDirectory(args[1]);	
 	    }
         else {
-            launchProcess(args);
+            if(npargs == 0)
+                launchProcess(args);
+            else
+                launchProcessPiped(args, argsPiped);
         }
     }
 

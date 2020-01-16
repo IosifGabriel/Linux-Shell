@@ -8,5 +8,6 @@
 #include <sys/wait.h>
 
 void launchProcess(char **args);
+void launchProcessPiped(char **args, char **argspiped);
 
 #endif

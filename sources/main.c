@@ -64,7 +64,7 @@ int main()
         int nargs = parserResult.noOfCommands;
         char **args = parserResult.commandWords;
 
-	    addToHistory(line);
+	addToHistory(line);
 
         if(strcmp(args[0], "exit") == 0) {
             exitProgram();

@@ -8,6 +8,7 @@
 #include "parser.h"
 #include "process.h"
 #include "command.h"
+#include "history.h"
 
 void welcome()
 {
@@ -61,6 +62,8 @@ int main()
         char *line = readLine();
         char **args = parse(line).commandWords;
 
+	addToHistory(line);
+
         if(strcmp(args[0], "exit") == 0) {
             exitProgram();
         }
@@ -73,6 +76,9 @@ int main()
         else if(strcmp(args[0], "mkdir") == 0) {
             createDirectory(args[1]);
         }
+	else if(strcmp(args[0], "hist") == 0) {
+	    printHistory();
+	}	
         else {
             launchProcess(args);
         }

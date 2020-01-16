@@ -73,6 +73,19 @@ int main()
         else if(strcmp(args[0], "mkdir") == 0) {
             createDirectory(args[1]);
         }
+	else if(strcmp(args[0], "ls")==0){
+		
+		if(args[1]=="-l");
+			listcwdlong();
+		else			
+			listcwd();	
+	}
+	else if(strcmp(args[0], "cls")==0){
+		clearscreen();	
+	}
+	else if(strcmp(args[0], "rmdir") == 0) {
+		removeDirectory(args[1]);	
+	}
         else {
             launchProcess(args);
         }
